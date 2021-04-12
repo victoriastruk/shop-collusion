@@ -1,9 +1,9 @@
-@charset "UTF-8";
 html,
 body {
   width: 100%;
   height: 100%;
   font-family: "Poppins", sans-serif;
+  font-size: 18px;
   font-weight: 400;
   color: #22262a;
 }
@@ -11,55 +11,65 @@ body {
 .container {
   max-width: 1138px;
   margin: 0 auto;
+  padding: 0px 10px;
 }
 
 .header {
-  position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 50;
+  position: fixed;
+  padding: 27px 0;
+  background: #fff;
 }
 
-.header__wrapper {
-  position: relative;
-  z-index: 2;
-  height: 60px;
+.header__body {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
-}
-
-.header__logo {
-  cursor: pointer;
 }
 
 .header__list {
   display: flex;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  justify-content: space-around;
+  position: relative;
+  z-index: 3;
+}
+
+.header__icons {
+  position: relative;
+  z-index: 3;
 }
 
 .header__link {
   text-decoration: none;
-  padding-right: 20px;
   text-transform: uppercase;
-  font-size: 18px;
-  line-height: 27px;
-  font-weight: 400;
   color: #22262a;
+  line-height: 27px;
 }
 
-.header__icons {
+.header__link:not(last-child) {
+  margin-right: 25px;
+}
+
+.header__items {
   display: flex;
-  padding-left: 20px;
+  justify-content: flex-end;
 }
 
 .header__burger {
   display: none;
 }
 
-.header::before {
+.header__link:hover {
+  border-bottom: 3px solid #22262a;
+  text-shadow: 0 0 10px rgba(96, 11, 104, 0.5);
+}
+
+.header__logo {
+  position: relative;
+  z-index: 4;
+}
+
+.header:before {
   content: '';
   position: absolute;
   top: 0;
@@ -67,6 +77,67 @@ body {
   width: 100%;
   height: 100%;
   background-color: #fff;
+  z-index: 3;
+}
+
+svg:hover {
+  filter: drop-shadow(0 0 10px rgba(96, 11, 104, 0.5));
+}
+
+@media (max-width: 767px) {
+  .header__burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    z-index: 4;
+  }
+  .header__burger:before,
+  .header__burger:after {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+  }
+  .header__burger span {
+    position: absolute;
+    background-color: #000;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 9px;
+  }
+  .header__burger:before {
+    top: 0;
+  }
+  .header__burger:after {
+    bottom: 0;
+  }
+  .header__burger .active:before {
+    transform: rotate(45deg);
+  }
+  .header__list li a {
+    color: #fff;
+  }
+  .header__list li {
+    margin: 0px 0px 20px 0px;
+  }
+  .header__menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 2, 2, 0.9);
+    color: #fff;
+    padding: 120px 10px 20px 10px;
+  }
+  .header__list {
+    display: block;
+  }
 }
 
 .main {
@@ -76,13 +147,15 @@ body {
   height: 100%;
   background-size: cover;
   position: relative;
-  top: 60px;
+  top: 80px;
+  z-index: -1;
 }
 
 .main__block {
   position: absolute;
   bottom: 101px;
   right: 170px;
+  z-index: -1;
 }
 
 .main__undertitle {
@@ -151,6 +224,7 @@ body {
 
 .category__block-three {
   position: relative;
+  z-index: -1;
 }
 
 .category__button {
@@ -182,17 +256,17 @@ body {
   margin-top: 15px;
 }
 
-.women {
+.card {
   padding-bottom: 70px;
 }
 
-.women__cart-items {
+.card__cart-items {
   display: flex;
   justify-content: space-between;
   padding-top: 65px;
 }
 
-.women__name {
+.card__name {
   padding-top: 28px;
   font-weight: 300;
   font-size: 15px;
@@ -200,14 +274,14 @@ body {
   margin-bottom: 3px;
 }
 
-.women__subtitle {
+.card__subtitle {
   font-weight: 600;
   font-size: 15px;
   line-height: 22px;
   margin-top: 3px;
 }
 
-.women__price {
+.card__price {
   display: flex;
   width: 50%;
   justify-content: space-between;
@@ -217,7 +291,7 @@ body {
   line-height: 22px;
 }
 
-.women__new-price {
+.card__new-price {
   color: #cf2929;
 }
 
@@ -282,6 +356,7 @@ body {
   display: flex;
   align-items: flex-end;
   position: relative;
+  z-index: -1;
   padding-left: 152px;
   top: -45px;
 }
@@ -308,6 +383,7 @@ body {
   height: 100%;
   background-size: cover;
   position: relative;
+  z-index: -1;
 }
 
 .tachen__block {
@@ -413,6 +489,7 @@ body {
   margin-left: 0px;
   position: relative;
   right: 15px;
+  z-index: -1;
 }
 
 .menu {
@@ -438,49 +515,4 @@ body {
   text-align: center;
   background: #e7f5f8;
   padding: 35px;
-}
-
-@media (max-width: 767px) {
-  .header__burger {
-    display: inline-block;
-    cursor: pointer;
-    position: fixed;
-    top: 10px;
-    left: 20px;
-    width: 100%;
-    height: 100%;
-  }
-  .bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 4px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-  }
-  /* Поворот первой полосы */
-  .change .bar1 {
-    transform: rotate(-45deg) translate(-9px, 6px);
-  }
-  /* Исчезание второй полосы */
-  .change .bar2 {
-    opacity: 0;
-  }
-  /* Поворот последней полосы */
-  .change .bar3 {
-    transform: rotate(45deg) translate(-8px, -8px);
-  }
-  .header__menu {
-    display: none;
-  }
-  .header__icons {
-    position: fixed;
-    right: 0;
-  }
-  .category__block {
-    justify-content: last baseline;
-  }
-  .category__block-three {
-    position: absolute;
-    top: 50px;
-  }
 }
