@@ -1,64 +1,136 @@
+$blackFont: #22262a;
+//Общие стили
 html,
 body {
   width: 100%;
   height: 100%;
   font-family: "Poppins", sans-serif;
+  font-size: 18px;
   font-weight: 400;
   color: #22262a;
 }
+// Обёртка для содержимого
 .container {
   max-width: 1138px;
   margin: 0 auto;
+  padding: 0px 10px;
 }
+// Шапка сайта
 .header {
-  position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 50;
-  &__wrapper{
-    position: relative;
-    z-index: 2;
-    height: 60px;
+  position: fixed;
+  padding: 27px 0;
+  background: #fff;
+  &__body {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
-   
-  }
-  &__logo {
-    cursor: pointer;
   }
   &__list {
     display: flex;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    justify-content: space-around;
+    position: relative;
+    z-index: 3;
+  }
+  &__icons{
+    position: relative;
+    z-index: 3;
   }
   &__link {
     text-decoration: none;
-    padding-right: 20px;
     text-transform: uppercase;
-    font-size: 18px;
+    color: $blackFont;
     line-height: 27px;
-    font-weight: 400;
-    color: #22262a;
   }
-  &__icons {
+  &__link:not(last-child) {
+    margin-right: 25px;
+  }
+  &__items{
     display: flex;
-    padding-left: 20px;
-  } 
+    justify-content: flex-end;
+  }
   &__burger{
     display: none;
   }
+  &__link:hover{
+    border-bottom: 3px solid $blackFont;
+    text-shadow: 0 0 10px rgba(96, 11, 104, 0.5);
+  }
+  &__logo{
+    position: relative;
+    z-index:4;
+  }
 }
-.header::before {
-  content: '';
+.header:before{
+  content:'';
   position: absolute;
-  top: 0;
-  left: 0;
+  top:0;
+  left:0;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color:#fff;
+  z-index: 3;
 }
+// Тень для иконочного шрифта
+svg:hover{
+  filter: drop-shadow(0 0 10px rgba(96, 11, 104, 0.5));
+}
+@media (max-width:767px){
+  .header__burger{
+    display: block;
+    position:relative;
+    width: 30px;
+    height: 20px;
+    position:relative;
+    z-index: 4;
+  }
+  .header__burger:before,
+  .header__burger:after{
+    content:'';
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left:0;
+  }
+  .header__burger span{
+    position: absolute;
+    background-color: #000;
+    left:0;
+    width: 100%;
+    height: 2px;
+    top:9px;
+  }
+  .header__burger:before{
+    top:0;
+  }
+  .header__burger:after{
+    bottom: 0;
+  }
+  .header__burger .active:before{
+    transform: rotate(45deg);
+  }
+  .header__list li a{
+    color:#fff;
+  }
+  .header__list li{
+    margin: 0px 0px 20px 0px;
+  }
+  .header__menu{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 2, 2, 0.9);
+    color:#fff;
+    padding: 120px 10px 20px 10px;
+  }
+  .header__list{
+    display: block;
+  }
+}
+// Главная страница
 .main {
   background: url("../img/1.png");
   background-repeat: no-repeat;
@@ -66,11 +138,13 @@ body {
   height: 100%;
   background-size: cover;
   position: relative;
-  top: 60px;
+  top: 80px;
+  z-index: -1;
   &__block {
     position: absolute;
     bottom: 101px;
     right: 170px;
+    z-index:-1;
   }
   &__undertitle {
     text-transform: uppercase;
@@ -129,6 +203,7 @@ body {
   }
   &__block-three {
     position: relative;
+    z-index: -1;
   }
   &__button {
     position: absolute;
@@ -157,7 +232,7 @@ body {
   text-align: center;
   margin-top: 15px;
 }
-.women {
+.card {
   padding-bottom: 70px;
   &__cart-items {
     display: flex;
@@ -241,6 +316,7 @@ body {
     display: flex;
     align-items: flex-end;
     position: relative;
+    z-index:-1;
     padding-left: 152px;
     top: -45px;
   }
@@ -265,6 +341,7 @@ body {
   height: 100%;
   background-size: cover;
   position: relative;
+  z-index:-1;
   &__block {
     position: absolute;
     bottom: 129px;
@@ -357,6 +434,7 @@ body {
     margin-left: 0px;
     position: relative;
     right: 15px;
+    z-index:-1;
   }
 }
 .menu {
@@ -379,55 +457,4 @@ body {
   text-align: center;
   background: #e7f5f8;
   padding: 35px;
-}
-@media(max-width:767px){
-  .header__burger {
-    display: inline-block;
-    cursor: pointer;
-    position: fixed;
-    top:10px;
-    left:20px;
-    width: 100%;
-    height: 100%;
-  }
-  .bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 4px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-  }
-  
-  /* Поворот первой полосы */
-  .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-    transform: rotate(-45deg) translate(-9px, 6px) ;
-  }
-  
-  /* Исчезание второй полосы */
-  .change .bar2 {
-    opacity: 0;
-  }
-  
-  /* Поворот последней полосы */
-  .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-    transform: rotate(45deg) translate(-8px, -8px) ;
-  }
-  .header__menu{
-    display: none;
-  }
-  .header__icons{
-    position: fixed;
-    right: 0;
-  }
-  .category{
-    &__block{
-      justify-content: last baseline;
-    }
-    &__block-three {
-      position: absolute;
-      top: 50px;
-    }
-  }
 }
