@@ -21,6 +21,8 @@ body {
   position: fixed;
   padding: 27px 0;
   background: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
   &__body {
     display: flex;
     justify-content: space-between;
@@ -30,11 +32,9 @@ body {
     display: flex;
     justify-content: space-around;
     position: relative;
-    z-index: 3;
   }
-  &__icons{
+  &__icons {
     position: relative;
-    z-index: 3;
   }
   &__link {
     text-decoration: none;
@@ -45,106 +45,51 @@ body {
   &__link:not(last-child) {
     margin-right: 25px;
   }
-  &__items{
+  &__items {
     display: flex;
     justify-content: flex-end;
   }
-  &__burger{
+  &__burger {
     display: none;
   }
-  &__link:hover{
-    border-bottom: 3px solid $blackFont;
-    text-shadow: 0 0 10px rgba(96, 11, 104, 0.5);
+  &__link:hover {
+    // border-bottom: 3px solid $blackFont;
+    text-shadow: 0 0 10px rgba(41, 40, 41, 0.5);
   }
-  &__logo{
+  &__logo {
     position: relative;
-    z-index:4;
   }
 }
-.header:before{
-  content:'';
+.header:before {
+  content: "";
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color:#fff;
-  z-index: 3;
+  background-color: #fff;
 }
 // Тень для иконочного шрифта
-svg:hover{
-  filter: drop-shadow(0 0 10px rgba(96, 11, 104, 0.5));
+svg:hover {
+  filter: drop-shadow(0 0 10px rgba(41, 40, 41, 0.5));
 }
-@media (max-width:767px){
-  .header__burger{
-    display: block;
-    position:relative;
-    width: 30px;
-    height: 20px;
-    position:relative;
-    z-index: 4;
-  }
-  .header__burger:before,
-  .header__burger:after{
-    content:'';
-    background-color: #000;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left:0;
-  }
-  .header__burger span{
-    position: absolute;
-    background-color: #000;
-    left:0;
-    width: 100%;
-    height: 2px;
-    top:9px;
-  }
-  .header__burger:before{
-    top:0;
-  }
-  .header__burger:after{
-    bottom: 0;
-  }
-  .header__burger .active:before{
-    transform: rotate(45deg);
-  }
-  .header__list li a{
-    color:#fff;
-  }
-  .header__list li{
-    margin: 0px 0px 20px 0px;
-  }
-  .header__menu{
-    position: fixed;
-    top: 0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(2, 2, 2, 0.9);
-    color:#fff;
-    padding: 120px 10px 20px 10px;
-  }
-  .header__list{
-    display: block;
-  }
-}
+
 // Главная страница
 .main {
   background: url("../img/1.png");
+  display: block;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   background-size: cover;
-  position: relative;
   top: 80px;
-  z-index: -1;
+  background-position: center center;
+
+  position: relative;
   &__block {
     position: absolute;
-    bottom: 101px;
-    right: 170px;
-    z-index:-1;
+    bottom: calc((101 / 1593) * 100%);
+    right: calc((170 / 1593) * 100%);
   }
   &__undertitle {
     text-transform: uppercase;
@@ -175,16 +120,22 @@ svg:hover{
     line-height: 27px;
     text-align: center;
     margin-right: 34px;
+    &:hover {
+      background: #fff;
+      color: #22262a;
+      font-weight: 600;
+    }
   }
   &__two {
     padding: 4px 24px;
   }
 }
 .category {
-  padding-top: 70px;
+  padding-top: 160px;
   padding-bottom: 70px;
   &__block {
     display: flex;
+    flex: 0 0 30%;
     justify-content: space-between;
     height: 574px;
   }
@@ -203,7 +154,6 @@ svg:hover{
   }
   &__block-three {
     position: relative;
-    z-index: -1;
   }
   &__button {
     position: absolute;
@@ -216,6 +166,10 @@ svg:hover{
     font-weight: 500;
     font-size: 18px;
     line-height: 27px;
+    &:hover {
+      color: #fff;
+      background: $blackFont;
+    }
   }
 }
 .title {
@@ -234,75 +188,43 @@ svg:hover{
 }
 .card {
   padding-bottom: 70px;
-  &__cart-items {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 65px;
-  }
-  &__name {
-    padding-top: 28px;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 22px;
-    margin-bottom: 3px;
-  }
-  &__subtitle {
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 22px;
-    margin-top: 3px;
-  }
-  &__price {
-    display: flex;
-    width: 50%;
-    justify-content: space-between;
-    margin-top: 3px;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 22px;
-  }
-  &__new-price {
-    color: #cf2929;
-  }
+}
+.cart-items {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 65px;
+}
+.name {
+  padding-top: 28px;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 3px;
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  margin-top: 3px;
+}
+.price {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin-top: 3px;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 22px;
+}
+.new-price {
+  color: #cf2929;
 }
 
-.men {
-  padding-bottom: 70px;
-  &__cart-items {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 65px;
-  }
-  &__name {
-    padding-top: 28px;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 22px;
-    margin-bottom: 3px;
-  }
-  &__subtitle {
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 22px;
-    margin-top: 3px;
-  }
-  &__price {
-    display: flex;
-    width: 50%;
-    justify-content: space-between;
-    margin-top: 3px;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 22px;
-  }
-  &__new-price {
-    color: #cf2929;
-  }
-}
 .avone {
   padding-bottom: 40px;
   &__wrap {
-    display: flex;
+    display: inline-flex;
+    flex: 0 0 30%;
     justify-content: space-around;
   }
   &__block-one {
@@ -314,9 +236,9 @@ svg:hover{
   }
   &__block-three {
     display: flex;
+    flex: 0 0 30%;
     align-items: flex-end;
     position: relative;
-    z-index:-1;
     padding-left: 152px;
     top: -45px;
   }
@@ -333,6 +255,9 @@ svg:hover{
     font-size: 15px;
     line-height: 22px;
     padding-bottom: 20px;
+    &:hover {
+      text-shadow: 0 0 10px rgba(41, 40, 41, 0.5);
+    }
   }
 }
 .tachen {
@@ -341,7 +266,6 @@ svg:hover{
   height: 100%;
   background-size: cover;
   position: relative;
-  z-index:-1;
   &__block {
     position: absolute;
     bottom: 129px;
@@ -369,6 +293,11 @@ svg:hover{
     line-height: 27px;
     text-align: center;
     margin-right: 34px;
+    &:hover {
+      background: #fff;
+      color: $blackFont;
+      font-weight: 600;
+    }
   }
 }
 .footer {
@@ -434,7 +363,7 @@ svg:hover{
     margin-left: 0px;
     position: relative;
     right: 15px;
-    z-index:-1;
+    z-index: -1;
   }
 }
 .menu {
@@ -446,6 +375,9 @@ svg:hover{
     text-decoration: none;
     color: #22262a;
     margin-right: 88px;
+    &:hover {
+      text-shadow: 0 0 10px rgba(41, 40, 41, 0.5);
+    }
   }
 }
 .title {
