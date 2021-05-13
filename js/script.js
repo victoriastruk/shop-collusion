@@ -1,5 +1,6 @@
-$(document).ready(function(){
-  $('.header__burger').click(function(event){
-    $('.header__burger, .header__menu').toggleClass('active');
+$(document).ready(function() {
+  $('.cart-items').slick({
+    slidesToShow: 4,
+    slidesToScroll: 4
   });
 });
